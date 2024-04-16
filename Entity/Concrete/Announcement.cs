@@ -11,5 +11,9 @@ namespace Models.Concrete
         public Announcement(string title, string description) : base(title, description)
         {
         }
+        public Announcement()
+        {
+            
+        }
     }
 }

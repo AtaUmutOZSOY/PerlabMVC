@@ -20,6 +20,10 @@ namespace Core.DataAccess.Concrete
         {
             _context = context;
         }
+        public EfEntityRepositoryBase()
+        {
+            
+        }
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> filter)
         {

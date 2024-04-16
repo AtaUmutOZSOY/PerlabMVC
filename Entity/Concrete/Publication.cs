@@ -5,8 +5,12 @@ namespace Models.Concrete
 {
     public class Publication : Research
     {
-        public string DOI { get; set; }
-        public string ISSN { get; set; }
+        public Publication()
+        {
+            
+        }
+        public string Doi { get; set; }
+        public string Issn { get; set; }
         public string JournalName { get; set; }
         public string? Abstract { get; set; }
 
@@ -15,8 +19,8 @@ namespace Models.Concrete
         public Publication(string title, string description, string doi, string issn)
             : base(title, description)
         {
-            DOI = doi;
-            ISSN = issn;
+            Doi = doi;
+            Issn = issn;
         }
     }
 }

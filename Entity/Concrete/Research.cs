@@ -15,6 +15,10 @@ namespace Models.Concrete
             Description = description;
         }
 
+        public Research()
+        {
+            
+        }
         public string Title { get; set; }
         public string Description { get; set; }
 

@@ -15,6 +15,10 @@ namespace Models.Concrete
             Title = title;
             Description = description;
         }
+        public NewsFeed()
+        {
+            
+        }
 
         public NewsFeedEnums NewsFeedType { get; set; }
         public string Title { get; set; }
