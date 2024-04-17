@@ -2,8 +2,13 @@
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 using AutoMapper;
+using Business.Abstract;
+using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utitlities;
+using DataAccess.Abstract;
+using DataAccess.Concrete;
 using System.Reflection;
 using Module = Autofac.Module;
 
@@ -13,9 +18,9 @@ namespace Business.DependancyResolvers
     {
         protected override void Load(ContainerBuilder builder)
         {
-           
-            //builder.RegisterType<ExternalEmployeeManager>().As<IExternalEmployeeService>();
-            //builder.RegisterType<EfExternalEmployeeDal>().As<IExternalEmployeeDal>();
+
+            builder.RegisterType<NewsFeedManager>().As<INewsFeedService>();
+            builder.RegisterType<EfNewsFeedDal>().As<INewsFeedDal>();
 
 
 

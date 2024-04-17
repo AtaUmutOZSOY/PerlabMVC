@@ -52,7 +52,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("PublicationId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("Models.Concrete.Collaboration", b =>
@@ -76,7 +76,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Collaborations");
+                    b.ToTable("Collaborations", (string)null);
                 });
 
             modelBuilder.Entity("Models.Concrete.NewsFeed", b =>
@@ -111,7 +111,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NewsFeeds");
+                    b.ToTable("NewsFeeds", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("NewsFeed");
 
@@ -144,7 +144,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Researches");
+                    b.ToTable("Researches", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Research");
 
@@ -192,7 +192,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
 

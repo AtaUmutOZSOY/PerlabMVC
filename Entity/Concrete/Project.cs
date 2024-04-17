@@ -11,6 +11,10 @@ namespace Models.Concrete
         public Project(string title, string description) : base(title, description)
         {
         }
+        public Project()
+        {
+                
+        }
 
         public string ProjectManagerFullName { get; set; }
         public string ProjectTitle { get; set; }

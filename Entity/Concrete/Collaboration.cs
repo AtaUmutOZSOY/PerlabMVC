@@ -14,7 +14,10 @@ namespace Models.Concrete
             CollaborationName = collaborationName;
             CollaborationWebSiteLink = collaborationWebSiteLink;
         }
-
+        public Collaboration()
+        {
+            
+        }
         public string CollaborationName { get; set; }
         public string CollaborationWebSiteLink { get; set; }
     }

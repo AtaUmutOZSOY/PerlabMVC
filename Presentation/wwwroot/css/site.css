@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -19,4 +19,59 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+.navbar-brand img {
+    height: 60px; /* Logo yüksekliği */
+}
+
+.navbar-brand > div {
+    line-height: 1.2; /* Satır yüksekliğini ayarla */
+    margin-left: 10px; /* Logodan sonra boşluk */
+}
+
+.navbar-brand span:first-child {
+    font-size: 1.25rem; /* Üniversite adı boyutu */
+    font-weight: bold; /* Kalın font */
+}
+
+.navbar-brand span:last-child {
+    font-size: 0.8rem; /* Laboratuvar adı boyutu */
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+.carousel-item img {
+    object-fit: cover; /* Resimlerin boyutunu düzgün bir şekilde ayarlar */
+    height: 500px; /* Carousel yüksekliği */
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Metin kutusunun arkasını yarı saydam siyah yapar */
+    border-radius: 10px; /* Kenarları yuvarlaklaştırır */
+}
+
+    .carousel-caption h5 {
+        color: #fff; /* Başlık rengi beyaz */
+    }
+
+    .carousel-caption p {
+        color: #f8f9fa; /* Metin rengi açık gri */
+    }
+
+
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Gölge efekti */
+    border-radius: 10px; /* Yuvarlatılmış köşeler */
+}
+
+.card-header {
+    background-color: #f8f9fa; /* Başlık arka planı */
+    font-weight: bold; /* Başlık font kalınlığı */
+    font-size: 1.2rem; /* Başlık font boyutu */
+}
+
+.list-group-item {
+    border: none; /* List item sınırlarını kaldır */
 }

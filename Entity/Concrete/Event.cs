@@ -13,7 +13,10 @@ namespace Models.Concrete
 
         }
 
-
+        public Event()
+        {
+            
+        }
         public DateTime EventTime { get; set; }
     }
 }

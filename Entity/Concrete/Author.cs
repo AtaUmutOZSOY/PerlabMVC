@@ -15,7 +15,10 @@ namespace Models.Concrete
             LastName = lastName;
             Affiliation = affiliation;
         }
-
+        public Author()
+        {
+            
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Affiliation { get; set; }

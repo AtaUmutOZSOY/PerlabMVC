@@ -1,6 +1,6 @@
 ﻿using Castle.DynamicProxy;
 
-namespace Core.Utilities.Interceptors
+namespace Core.Utitlities
 {
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]

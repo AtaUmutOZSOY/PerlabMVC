@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class EfAnnouncementDal : EfEntityRepositoryBase<Announcement, PerlabDbContext>, IAnnouncementDal
+    public class EfNewsFeedDal:EfEntityRepositoryBase<NewsFeed,PerlabDbContext>,INewsFeedDal
     {
-        
     }
 }

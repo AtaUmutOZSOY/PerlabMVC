@@ -18,6 +18,10 @@ namespace Models.Concrete
             PasswordSalt = passwordSalt;
             Email = email;
         }
+        public User()
+        {
+            
+        }
 
         public string FirstName { get; set; }
         public string? MiddleName { get; set; }
