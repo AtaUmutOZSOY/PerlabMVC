@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Entity.Concretes;
+using Microsoft.EntityFrameworkCore;
 using Models.Concrete;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,9 @@ namespace DataAccess
         public DbSet<Publication> Publications { get; set; }
         public DbSet<Research> Researches { get; set; }
         public DbSet<User> Users { get; set; }
+
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
 
 

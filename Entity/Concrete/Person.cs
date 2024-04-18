@@ -1,4 +1,5 @@
-﻿using Models.Enums;
+﻿using Core.Entity.Concretes;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,8 @@ namespace Models.Concrete
 {
     public class Person : User
     {
-        public Person(string firstName, string? middleName, string lastName, byte[] passwordHash, byte[] passwordSalt, string email) : base(firstName, middleName, lastName, passwordHash, passwordSalt, email)
-        {
-        }
-        public Person()
-        {
-            
-        }
+      
+     
 
         public GraduateEnums GraduateTypeEnum { get; set; }
         public string GraduateSchoolName { get; set; }

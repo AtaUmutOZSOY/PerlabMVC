@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Core.Entity.Concretes;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -20,7 +21,7 @@ namespace Business.Concrete
         {
             _newsFeedDal = newsFeedDal;
         }
-
+        //[SecuredOperation("admin")]
         public IResult CreateNewsFeed(CreateNewsFeedRequestDto createNewsFeedRequestDto)
         {
             var existingNewsFeed = _newsFeedDal.Get(x => x.Title == createNewsFeedRequestDto.Title);
@@ -60,6 +61,8 @@ namespace Business.Concrete
         }
 
 
+        //[SecuredOperation("admin")]
+
         public IResult DeleteNewsFeedById(int newsFeedId)
         {
             var existNewsFeed = _newsFeedDal.Get(x => x.Id == newsFeedId);
@@ -76,6 +79,9 @@ namespace Business.Concrete
             var result = _newsFeedDal.GetAll();
             return new SuccessDataResult<List<NewsFeed>>(result);   
         }
+
+
+        //[SecuredOperation("admin")]
 
         public IResult UpdateNewsFeed(UpdateNewsFeedRequestDto updateNewsFeedRequestDto)
         {

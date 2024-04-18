@@ -6,6 +6,7 @@ using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.Jwt;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using System.Reflection;
@@ -17,10 +18,14 @@ namespace Business.DependancyResolver.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<UserManager>().As<IUserService>();
+            builder.RegisterType<EfUserDal>().As<IUserDal>();
+
 
             builder.RegisterType<NewsFeedManager>().As<INewsFeedService>();
             builder.RegisterType<EfNewsFeedDal>().As<INewsFeedDal>();
-
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
 
             var assembly = Assembly.GetExecutingAssembly();
