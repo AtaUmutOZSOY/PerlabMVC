@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using Core.Entity.Concretes;
 using Core.Extensions;
+using Core.Utilities.Results;
 using Core.Utilities.Security.Encryption;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -109,6 +110,21 @@ namespace Core.Utilities.Security.Jwt
             };
 
             return refreshToken;
+        }
+
+        public IResult CheckTokenExpiration(AccessToken accessToken)
+        {
+            if (accessToken == null)
+            {
+                return new ErrorResult("Access Token is null");
+            }
+
+            if (accessToken.Expiration < DateTime.Now)
+            {
+                return new ErrorResult("Token has expired.");
+            }
+
+            return new SuccessResult();
         }
     }
 }

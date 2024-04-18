@@ -40,7 +40,9 @@ namespace Business.Concrete
                     LastName = userForRegisterDto.LastName,
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
-                    EntityStatus = Core.Entity.Concretes.EntityStatuses.Active
+                    EntityStatus = Core.Entity.Concretes.EntityStatuses.Active,
+                    IdentityNumber = userForRegisterDto.IdentityNumber,
+                    Phone = userForRegisterDto.Phone,
                 };
                 _userService.Add(user);
                 return new SuccessDataResult<User>(user, Messages.UserRegistered);
@@ -64,7 +66,9 @@ namespace Business.Concrete
 
             public IResult UserExists(string email)
             {
-                if (_userService.GetByMail(email) != null)
+            var result = _userService.GetByMail(email);
+            
+                if (result.Data is not null)
                 {
                     return new ErrorResult(Messages.UserAlreadyExists);
                 }
@@ -78,6 +82,15 @@ namespace Business.Concrete
                 return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
             }
 
-       
-     }
+        public IResult CheckUserAuthentication(AccessToken accessToken)
+        {
+            var result = _tokenHelper.CheckTokenExpiration(accessToken);
+
+            if (result.Success)
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult();
+        }
+    }
     }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Security.Jwt;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Dtos.User;
@@ -48,6 +49,18 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result.Message);
+        }
+
+        [HttpPost("checkUserAuthentication")]
+
+        public IActionResult CheckUserAuthentication(AccessToken accessToken)
+        {
+            var result = _authService.CheckUserAuthentication(accessToken);
+            if (result.Success)
+            {
+                return Ok(result);  
+            }
+            return BadRequest(result);
         }
     }
 }
