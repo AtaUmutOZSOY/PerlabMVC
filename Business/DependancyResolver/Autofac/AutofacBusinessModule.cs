@@ -6,13 +6,12 @@ using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
-using Core.Utitlities;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using System.Reflection;
 using Module = Autofac.Module;
 
-namespace Business.DependancyResolvers
+namespace Business.DependancyResolver.Autofac
 {
     public class AutofacBusinessModule : Module
     {

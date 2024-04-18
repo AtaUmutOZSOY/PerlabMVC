@@ -1,4 +1,5 @@
-﻿using Core.EntityCore;
+﻿using Core.Entity.Concretes;
+using Core.Entity.Interfaces;
 using Models.Enums;
 using System;
 using System.Collections.Generic;

@@ -1,19 +1,16 @@
-﻿using Core.EntityCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace Core.DataAccess.Abstract
 {
-    public interface IEntityRepository<T> where T : class,IEntity
+    public interface IEntityRepository<TEntity> where TEntity : class
     {
-        Task<T> GetAsync(Expression<Func<T, bool>> filter);
-        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null);
-        Task AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        TEntity Get(Expression<Func<TEntity, bool>> filter);
+        void Add(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
+        void DeleteByLocally(TEntity entity);
+        List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null);
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
-using Core.ResponseStructure;
+using Core.Entity.Concretes;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Models.Concrete;
 using Models.Dtos.NewsFeed;
@@ -20,9 +21,9 @@ namespace Business.Concrete
             _newsFeedDal = newsFeedDal;
         }
 
-        public async Task<IResult> CreateNewsFeedAsync(CreateNewsFeedRequestDto createNewsFeedRequestDto)
+        public IResult CreateNewsFeed(CreateNewsFeedRequestDto createNewsFeedRequestDto)
         {
-            var existingNewsFeed = await _newsFeedDal.GetAsync(x => x.Title == createNewsFeedRequestDto.Title);
+            var existingNewsFeed = _newsFeedDal.Get(x => x.Title == createNewsFeedRequestDto.Title);
             if (existingNewsFeed != null)
             {
                 return new ErrorResult("A news feed with the same title already exists.");
@@ -39,7 +40,7 @@ namespace Business.Concrete
                     Title = createNewsFeedRequestDto.Title
                 };
 
-                await _newsFeedDal.AddAsync(evennt);
+                _newsFeedDal.Add(evennt);
                 return new SuccessResult("News feed created successfully.");
 
             }
@@ -52,27 +53,33 @@ namespace Business.Concrete
                     Link = createNewsFeedRequestDto.Link,
                     Title = createNewsFeedRequestDto.Title
                 };
-                await _newsFeedDal.AddAsync(announcement);
+                _newsFeedDal.Add(announcement);
                 return new SuccessResult ( "News feed created successfully.");
             }
             return new ErrorResult("News Feed Not Created");
         }
 
 
-        public async Task<IResult> DeleteNewsFeedById(int newsFeedId)
+        public IResult DeleteNewsFeedById(int newsFeedId)
         {
-            var existNewsFeed = await _newsFeedDal.GetAsync(x=>x.Id == newsFeedId);
+            var existNewsFeed = _newsFeedDal.Get(x => x.Id == newsFeedId);
             if (existNewsFeed is not null)
             {
-                await _newsFeedDal.DeleteAsync(existNewsFeed);
+                _newsFeedDal.Delete(existNewsFeed);
                 return new SuccessResult(message: "News Feed Deleted");
             }
             return new ErrorResult(message:"News Feed Not Found");
         }
 
-        public async Task<IResult> UpdateNewsFeed(UpdateNewsFeedRequestDto updateNewsFeedRequestDto)
+        public IDataResult<List<NewsFeed>> GetAll()
         {
-            var existNewsFeed = await _newsFeedDal.GetAsync(x => x.Id == updateNewsFeedRequestDto.Id);
+            var result = _newsFeedDal.GetAll();
+            return new SuccessDataResult<List<NewsFeed>>(result);   
+        }
+
+        public IResult UpdateNewsFeed(UpdateNewsFeedRequestDto updateNewsFeedRequestDto)
+        {
+            var existNewsFeed = _newsFeedDal.Get(x => x.Id == updateNewsFeedRequestDto.Id);
 
             if (existNewsFeed is null)
             {
@@ -82,7 +89,7 @@ namespace Business.Concrete
             existNewsFeed.Title = updateNewsFeedRequestDto.Title;
             existNewsFeed.Description = updateNewsFeedRequestDto.Description;
             existNewsFeed.NewsFeedType = updateNewsFeedRequestDto.NewsFeedType;
-            await _newsFeedDal.UpdateAsync(existNewsFeed);
+            _newsFeedDal.Update(existNewsFeed);
             return new SuccessResult(message: "Succeed Update");
         }
     }

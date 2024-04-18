@@ -10,9 +10,13 @@ namespace DataAccess
 {
     public class PerlabDbContext:DbContext
     {
-        public PerlabDbContext(DbContextOptions<PerlabDbContext> options):base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseMySql("server=localhost;database=perlabdb;user=root;password=reostaspytr7B.!",
+                    new MySqlServerVersion(new Version(8, 0, 36))); // Make sure to use the correct MySQL version
+            }
         }
 
         public DbSet<Announcement> Announcements { get; set; }

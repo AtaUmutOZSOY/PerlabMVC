@@ -1,59 +1,76 @@
 ﻿using Core.DataAccess.Abstract;
-using Core.EntityCore;
+using Core.Entity.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.DataAccess.Concrete
 {
-    public class EfEntityRepositoryBase<T, TContext> : IEntityRepository<T>
-        where T : class,IEntity, new()
-        where TContext : DbContext
+    public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
+   where TEntity : class, IEntity, new() 
+   where TContext : DbContext, new()
     {
-        private readonly TContext _context;
-
-        public EfEntityRepositoryBase(TContext context)
+        public void Add(TEntity entity)
         {
-            _context = context;
-        }
-        public EfEntityRepositoryBase()
-        {
-            
-        }
-
-        public async Task<T> GetAsync(Expression<Func<T, bool>> filter)
-        {
-            return await _context.Set<T>().SingleOrDefaultAsync(filter);
+            using (var context = new TContext())
+            {
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
+            }
         }
 
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null)
+        public void Delete(TEntity entity)
         {
-            return filter == null
-                ? await _context.Set<T>().ToListAsync()
-                : await _context.Set<T>().Where(filter).ToListAsync();
+            using (var context = new TContext())
+            {
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
 
-        public async Task AddAsync(T entity)
+        public void DeleteByLocally(TEntity entity)
         {
-            await _context.Set<T>().AddAsync(entity);
-            await _context.SaveChangesAsync();
+            using (var context = new TContext())
+            {
+                var deletedByLocallyEntity = context.Entry(entity);
+                deletedByLocallyEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
 
-        public async Task UpdateAsync(T entity)
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            _context.Set<T>().Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            using (var context = new TContext())
+            {
+#pragma warning disable CS8603 // Possible null reference return.
+                return context.Set<TEntity>().SingleOrDefault(filter);
+#pragma warning restore CS8603 // Possible null reference return.
+            }
         }
 
-        public async Task DeleteAsync(T entity)
+        public List<TEntity> GetAll(Expression<Func<TEntity,bool>>? filter = null)
         {
-            _context.Set<T>().Remove(entity);
-            await _context.SaveChangesAsync();
+            using (var context = new TContext())
+            {
+                var result = filter == null
+                    ? context.Set<TEntity>().ToList()
+                    : context.Set<TEntity>()
+                    .Where(filter)
+                    .ToList();
+
+                return result;
+            }
+        }
+
+        public void Update(TEntity entity)
+        {
+            using (var context = new TContext())
+            {
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }

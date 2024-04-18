@@ -1,18 +1,19 @@
-﻿using Core.ResponseStructure;
+﻿using Core.Entity.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.ResponseStructure;
 using Models.Concrete;
 using Models.Dtos.NewsFeed;
+using Core.Utilities.Results;
 namespace Business.Abstract
 {
     public interface INewsFeedService
     {
-        Task<IResult> CreateNewsFeedAsync(CreateNewsFeedRequestDto createNewsFeedRequestDto);
-        Task<IResult> UpdateNewsFeed(UpdateNewsFeedRequestDto updateNewsFeedRequestDto);
-        Task<IResult> DeleteNewsFeedById(int newsFeedId);
+        IResult CreateNewsFeed(CreateNewsFeedRequestDto createNewsFeedRequestDto);
+        IResult UpdateNewsFeed(UpdateNewsFeedRequestDto updateNewsFeedRequestDto);
+        IResult DeleteNewsFeedById(int newsFeedId);
+        IDataResult<List<NewsFeed>> GetAll();
     }
 }
