@@ -39,5 +39,6 @@ namespace DataAccess
 
         public DbSet<PersonImage> PersonImages { get; set; }
 
+        public DbSet<CarouselImage> CarouselImages { get; set; }
     }
 }
