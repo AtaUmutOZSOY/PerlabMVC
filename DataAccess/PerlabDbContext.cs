@@ -37,6 +37,7 @@ namespace DataAccess
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
 
+        public DbSet<PersonImage> PersonImages { get; set; }
 
     }
 }

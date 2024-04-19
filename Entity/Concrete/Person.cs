@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Models.Concrete
 {
-    public class Person : User
+    public class Person : Entity
     {
       
-     
+        
 
         public GraduateEnums GraduateTypeEnum { get; set; }
         public string GraduateSchoolName { get; set; }
