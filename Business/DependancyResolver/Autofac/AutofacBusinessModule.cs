@@ -25,6 +25,9 @@ namespace Business.DependancyResolver.Autofac
 
             builder.RegisterType<NewsFeedManager>().As<INewsFeedService>();
             builder.RegisterType<EfNewsFeedDal>().As<INewsFeedDal>();
+            builder.RegisterType<EfAnnouncementDal>().As<IAnnouncementDal>();
+            builder.RegisterType<EfEventDal>().As<IEventDal>();
+
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
 

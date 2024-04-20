@@ -16,10 +16,13 @@ namespace Business.Concrete
     public class NewsFeedManager : INewsFeedService
     {
         INewsFeedDal _newsFeedDal;
-
-        public NewsFeedManager(INewsFeedDal newsFeedDal)
+        IAnnouncementDal _announcementDal;
+        IEventDal _eventDal;
+        public NewsFeedManager(INewsFeedDal newsFeedDal, IAnnouncementDal announcementDal, IEventDal eventDal)
         {
             _newsFeedDal = newsFeedDal;
+            _announcementDal = announcementDal;
+            _eventDal = eventDal;
         }
         //[SecuredOperation("admin")]
         public IResult CreateNewsFeed(CreateNewsFeedRequestDto createNewsFeedRequestDto)
@@ -50,7 +53,7 @@ namespace Business.Concrete
                 var announcement = new Announcement()
                 {
                     Description = createNewsFeedRequestDto.Description,
-                    NewsFeedType = Models.Enums.NewsFeedEnums.Event,
+                    NewsFeedType = Models.Enums.NewsFeedEnums.Announcement,
                     Link = createNewsFeedRequestDto.Link,
                     Title = createNewsFeedRequestDto.Title
                 };
@@ -78,6 +81,18 @@ namespace Business.Concrete
         {
             var result = _newsFeedDal.GetAll();
             return new SuccessDataResult<List<NewsFeed>>(result);   
+        }
+
+        public IDataResult<List<Announcement>> GetAllAnnouncements()
+        {
+            var result = _announcementDal.GetAll(x => x.NewsFeedType == Models.Enums.NewsFeedEnums.Announcement);
+            return new SuccessDataResult<List<Announcement>>(result);
+        }
+
+        public IDataResult<List<Event>> GetAllEvents()
+        {
+            var result = _eventDal.GetAll(x => x.NewsFeedType == Models.Enums.NewsFeedEnums.Event);
+            return new SuccessDataResult<List<Event>>(result);
         }
 
 

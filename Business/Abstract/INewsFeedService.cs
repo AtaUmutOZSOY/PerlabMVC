@@ -15,5 +15,8 @@ namespace Business.Abstract
         IResult UpdateNewsFeed(UpdateNewsFeedRequestDto updateNewsFeedRequestDto);
         IResult DeleteNewsFeedById(int newsFeedId);
         IDataResult<List<NewsFeed>> GetAll();
+
+        IDataResult<List<Announcement>> GetAllAnnouncements();
+        IDataResult<List<Event>> GetAllEvents();
     }
 }

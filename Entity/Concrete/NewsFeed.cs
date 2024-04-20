@@ -21,6 +21,9 @@ namespace Models.Concrete
         }
 
         public NewsFeedEnums NewsFeedType { get; set; }
+
+        public bool IsNew { get; set; }
+        public bool IsImportant { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
 

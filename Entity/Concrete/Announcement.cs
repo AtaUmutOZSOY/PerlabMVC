@@ -13,7 +13,7 @@ namespace Models.Concrete
         }
         public Announcement()
         {
-            
+            NewsFeedType = Enums.NewsFeedEnums.Announcement;    
         }
 
 
