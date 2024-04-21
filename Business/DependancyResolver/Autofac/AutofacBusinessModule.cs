@@ -21,6 +21,8 @@ namespace Business.DependancyResolver.Autofac
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
+            builder.RegisterType<EfPersonDal>().As<IPersonDal>();
+            builder.RegisterType<PersonManager>().As<IPersonService>();
 
 
             builder.RegisterType<NewsFeedManager>().As<INewsFeedService>();
