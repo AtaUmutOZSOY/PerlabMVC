@@ -16,5 +16,6 @@ namespace Business.Abstract
         IResult UpdatePersonVisualRank(int id,int visualRank);
         IDataResult<Person> GetById(int id);
         IDataResult<List<Person>> GetAll();
+        IResult UpdatePerson(Person person);
     }
 }

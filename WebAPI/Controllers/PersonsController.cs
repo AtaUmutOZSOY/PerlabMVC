@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getAllPersons")]
+        [HttpGet("getAllPeople")]
 
         public IActionResult GetAllPeople()
         {

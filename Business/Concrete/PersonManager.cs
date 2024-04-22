@@ -73,6 +73,26 @@ namespace Business.Concrete
             return new SuccessDataResult<Person>(result);
         }
 
+        public IResult UpdatePerson(Person person)
+        {
+            var existPerson = _personDal.Get(x=>x.Id ==person.Id);
+            if (existPerson is null)
+            {
+                return new ErrorResult("Person not found");
+            }
+            existPerson.OrcidUrl = person.OrcidUrl;
+            existPerson.ResearchGateUrl = person.ResearchGateUrl;
+            existPerson.PersonImageId = person.PersonImageId;
+            existPerson.FirstName = person.FirstName;
+            existPerson.LastName = person.LastName;
+            existPerson.MiddleName = person.MiddleName;
+            existPerson.VisualRank = person.VisualRank;
+
+            _personDal.Update(existPerson);
+
+            return new SuccessResult(Messages.SucceedUpdate);
+        }
+
         public IResult UpdatePersonVisualRank(int id, int visualRank)
         {
             var existPerson = _personDal.Get(x=>x.Id ==id);

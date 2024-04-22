@@ -23,7 +23,8 @@ namespace Business.DependancyResolver.Autofac
             builder.RegisterType<EfUserDal>().As<IUserDal>();
             builder.RegisterType<EfPersonDal>().As<IPersonDal>();
             builder.RegisterType<PersonManager>().As<IPersonService>();
-
+            builder.RegisterType<EfPersonImageDal>().As<IPersonImageDal>();
+            builder.RegisterType<PersonImageManager>().As<IPersonImageService>();
 
             builder.RegisterType<NewsFeedManager>().As<INewsFeedService>();
             builder.RegisterType<EfNewsFeedDal>().As<INewsFeedDal>();

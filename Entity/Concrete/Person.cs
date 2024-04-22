@@ -29,7 +29,7 @@ namespace Models.Concrete
         public string ResearchGateUrl { get; set; }
         public string LinkedInUrl { get; set; }
         public string OrcidUrl { get; set; }
-
+        public int PersonImageId { get; set; }
         public int VisualRank { get; set; }
 
     }
