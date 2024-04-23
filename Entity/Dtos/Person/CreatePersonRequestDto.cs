@@ -19,5 +19,7 @@ namespace Models.Dtos.Person
         public string LinkedInUrl { get; set; }
         public string OrcidUrl { get; set; }
         public int VisualRank { get; set; }
+
+        public string Base64String { get; set; }
     }
 }

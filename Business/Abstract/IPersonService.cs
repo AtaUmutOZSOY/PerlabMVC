@@ -17,5 +17,7 @@ namespace Business.Abstract
         IDataResult<Person> GetById(int id);
         IDataResult<List<Person>> GetAll();
         IResult UpdatePerson(Person person);
+
+        IResult ChangePersonImage(int id, string personImageBase64String);
     }
 }

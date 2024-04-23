@@ -28,7 +28,6 @@ namespace DataAccess
         public DbSet<Person> People { get; set; }
 
         public DbSet<Project> Projects { get; set; }
-        public DbSet<PersonImage> PersonImages { get; set; }
 
         public DbSet<Publication> Publications { get; set; }
         public DbSet<Research> Researches { get; set; }

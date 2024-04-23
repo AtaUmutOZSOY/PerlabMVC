@@ -22,6 +22,14 @@ namespace Business.Concrete
             _personDal = personDal;
         }
 
+        public IResult ChangePersonImage(int id , string personImageBase64String)
+        {
+            var existPerson = _personDal.Get(x=>x.Id == id);
+            existPerson.PersonImageBase64String = personImageBase64String;
+            _personDal.Update(existPerson);
+            return new SuccessResult(Messages.SucceedUpdate);
+        }
+
         public IResult CreatePerson(CreatePersonRequestDto createLaboratoryPersonRequestDto)
         {
             var fullName = createLaboratoryPersonRequestDto.FirstName + " " + createLaboratoryPersonRequestDto?.MiddleName + " " + createLaboratoryPersonRequestDto.LastName;
@@ -38,7 +46,8 @@ namespace Business.Concrete
                     ResearchGateUrl = createLaboratoryPersonRequestDto.ResearchGateUrl,
                     GraduateTypeEnum = createLaboratoryPersonRequestDto.GraduateTypeEnum,
                     GraduateSchoolName = createLaboratoryPersonRequestDto.GraduateSchoolName,
-                    VisualRank = createLaboratoryPersonRequestDto.VisualRank
+                    VisualRank = createLaboratoryPersonRequestDto.VisualRank,
+                    PersonImageBase64String = createLaboratoryPersonRequestDto.Base64String
                 };
                 _personDal.Add(newPerson);
                 return new SuccessResult(Messages.SucceedAdd);
@@ -82,7 +91,7 @@ namespace Business.Concrete
             }
             existPerson.OrcidUrl = person.OrcidUrl;
             existPerson.ResearchGateUrl = person.ResearchGateUrl;
-            existPerson.PersonImageId = person.PersonImageId;
+            existPerson.PersonImageBase64String = person.PersonImageBase64String;
             existPerson.FirstName = person.FirstName;
             existPerson.LastName = person.LastName;
             existPerson.MiddleName = person.MiddleName;
