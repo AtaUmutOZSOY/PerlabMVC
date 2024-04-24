@@ -28,6 +28,8 @@ namespace Business.DependancyResolver.Autofac
             builder.RegisterType<EfNewsFeedDal>().As<INewsFeedDal>();
             builder.RegisterType<EfAnnouncementDal>().As<IAnnouncementDal>();
             builder.RegisterType<EfEventDal>().As<IEventDal>();
+            builder.RegisterType<CollaborationManager>().As<ICollaborationService>();
+            builder.RegisterType<EfCollaborationDal>().As<ICollaborationDal>();
 
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 

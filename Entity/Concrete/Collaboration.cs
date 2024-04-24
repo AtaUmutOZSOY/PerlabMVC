@@ -20,5 +20,6 @@ namespace Models.Concrete
         }
         public string CollaborationName { get; set; }
         public string CollaborationWebSiteLink { get; set; }
+        public string ImageBase64String { get; set; }
     }
 }
