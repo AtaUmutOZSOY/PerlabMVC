@@ -4,6 +4,7 @@ using Business.Constants.Messages;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Models.Concrete;
+using Models.Dtos.Collaborations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,30 @@ namespace Business.Concrete
                 existCollaboration.Data.CollaborationName = collaboration.CollaborationName;
                 existCollaboration.Data.CollaborationWebSiteLink = collaboration.CollaborationWebSiteLink;
                 existCollaboration.Data.ImageBase64String = collaboration.ImageBase64String;
+                _collaborationDal.Update(existCollaboration.Data);
+                return new SuccessResult(Messages.SucceedUpdate);
+            }
+            return new ErrorResult("Collaboration not found");
+        }
+
+        public IResult UpdateCollaborationName(UpdateCollaborationNameRequestDto updateCollaborationNameRequestDto)
+        {
+            var existCollaboration = GetCollaborationById(updateCollaborationNameRequestDto.Id);
+            if (existCollaboration.Data is not null)
+            {
+                existCollaboration.Data.CollaborationName = updateCollaborationNameRequestDto.NewCollaborationName;
+                _collaborationDal.Update(existCollaboration.Data);
+                return new SuccessResult(Messages.SucceedUpdate);
+            }
+            return new ErrorResult("Collaboration not found");
+        }
+
+        public IResult UpdateCollaborationWebSiteLink(UpdateCollaborationWebSiteLinkRequestDto updateCollaborationWebSiteLinkRequestDto)
+        {
+            var existCollaboration = GetCollaborationById(updateCollaborationWebSiteLinkRequestDto.Id);
+            if (existCollaboration.Data is not null)
+            {
+                existCollaboration.Data.CollaborationWebSiteLink = updateCollaborationWebSiteLinkRequestDto.NewCollaborationWebSiteLink;
                 _collaborationDal.Update(existCollaboration.Data);
                 return new SuccessResult(Messages.SucceedUpdate);
             }

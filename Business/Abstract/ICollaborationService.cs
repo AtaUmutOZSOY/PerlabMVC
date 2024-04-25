@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Models.Concrete;
+using Models.Dtos.Collaborations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Business.Abstract
 
         IResult DeleteCollaborationById(int id);
 
+        IResult UpdateCollaborationName(UpdateCollaborationNameRequestDto updateCollaborationNameRequestDto);
+        IResult UpdateCollaborationWebSiteLink(UpdateCollaborationWebSiteLinkRequestDto updateCollaborationWebSiteLinkRequestDto);
         IDataResult<Collaboration> GetCollaborationById(int id);
     }
 }
