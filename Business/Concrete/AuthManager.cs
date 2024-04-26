@@ -40,7 +40,6 @@ namespace Business.Concrete
                     LastName = userForRegisterDto.LastName,
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
-                    EntityStatus = Core.Entity.Concretes.EntityStatuses.Active,
                     IdentityNumber = userForRegisterDto.IdentityNumber,
                     Phone = userForRegisterDto.Phone,
                 };

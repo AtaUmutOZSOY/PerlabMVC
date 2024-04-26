@@ -31,6 +31,12 @@ namespace Business.DependancyResolver.Autofac
             builder.RegisterType<CollaborationManager>().As<ICollaborationService>();
             builder.RegisterType<EfCollaborationDal>().As<ICollaborationDal>();
 
+            builder.RegisterType<ResearchManager>().As<IResearchService>();
+            builder.RegisterType<EfResearchDal>().As<IResearchDal>();
+            builder.RegisterType<ProjectManager>().As<IProjectService>();
+            builder.RegisterType<EfProjectDal>().As<IProjectDal>();
+
+
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
 

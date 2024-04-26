@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(PerlabDbContext))]
-    partial class PerlabDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240426123253_bilmemne")]
+    partial class bilmemne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,12 +33,30 @@ namespace DataAccess.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedTime")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -53,12 +74,24 @@ namespace DataAccess.Migrations
                     b.Property<DateOnly>("BirthDate")
                         .HasColumnType("date");
 
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -87,6 +120,12 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("UserType")
                         .HasColumnType("int");
 
@@ -103,11 +142,29 @@ namespace DataAccess.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
+
                     b.Property<int>("OperationClaimId")
                         .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -129,8 +186,20 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedTime")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -142,6 +211,12 @@ namespace DataAccess.Migrations
 
                     b.Property<int?>("PublicationId")
                         .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -158,12 +233,24 @@ namespace DataAccess.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
@@ -179,6 +266,12 @@ namespace DataAccess.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -201,12 +294,30 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedTime")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImageBase64String")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -221,7 +332,16 @@ namespace DataAccess.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
@@ -232,6 +352,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(13)
                         .HasColumnType("varchar(13)");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsImportant")
                         .HasColumnType("tinyint(1)");
@@ -248,6 +371,12 @@ namespace DataAccess.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -266,8 +395,20 @@ namespace DataAccess.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedTime")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -306,6 +447,12 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("VisualRank")
                         .HasColumnType("int");
 
@@ -322,7 +469,16 @@ namespace DataAccess.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
@@ -334,9 +490,18 @@ namespace DataAccess.Migrations
                         .HasMaxLength(13)
                         .HasColumnType("varchar(13)");
 
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 

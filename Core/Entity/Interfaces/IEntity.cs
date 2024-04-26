@@ -4,7 +4,5 @@
     {
         int Id { get; set; }
         DateTime? CreatedTime { get; set; }
-        DateTime? UpdatedTime { get; set; }
-        DateTime? DeletedTime { get; set; }
     }
 }
