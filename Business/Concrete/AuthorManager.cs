@@ -4,6 +4,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Models.Concrete;
+using Models.Dtos.Authors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,18 +22,25 @@ namespace Business.Concrete
             _authorDal = authorDal;
         }
 
-        public IResult CreateNewAuthor(Author author)
+        public IResult CreateNewAuthor(CreateAuthorRequestDto createAuthorRequestDto)
         {
-            var result = BusinessRules.Run(CheckExistAuthor(author));
+            var result = BusinessRules.Run(CheckExistAuthor(createAuthorRequestDto));
             if (result.Success)
             {
+                var author = new Author()
+                {
+                    Affiliation = createAuthorRequestDto.Affiliation,
+                    FirstName = createAuthorRequestDto.FirstName,
+                    LastName = createAuthorRequestDto.LastName,
+                    MiddleName = createAuthorRequestDto.MiddleName,
+                };
                 _authorDal.Add(author);
                 return new SuccessResult(Messages.SucceedAdd);
             }
             return new ErrorResult(result.Message);
         }
 
-        private IResult CheckExistAuthor(Author author)
+        private IResult CheckExistAuthor(CreateAuthorRequestDto author)
         {
             var result = _authorDal.Get(x=>x.FirstName == author.FirstName&&x.LastName==author.LastName&&x.MiddleName == author.MiddleName);
             if (result is null)

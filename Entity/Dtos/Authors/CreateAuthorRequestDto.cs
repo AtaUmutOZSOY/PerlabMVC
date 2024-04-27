@@ -1,0 +1,17 @@
+﻿using Core.Entity.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Models.Dtos.Authors
+{
+    public class CreateAuthorRequestDto:IDto
+    {
+        public string FirstName { get; set; }
+        public string? MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Affiliation { get; set; }
+    }
+}

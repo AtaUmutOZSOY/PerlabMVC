@@ -1,6 +1,7 @@
 ﻿using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Models.Concrete;
+using Models.Dtos.Authors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Business.Abstract
 {
     public interface IAuthorService
     {
-        IResult CreateNewAuthor(Author author);
+        IResult CreateNewAuthor(CreateAuthorRequestDto createAuthorRequestDto);
         IResult DeleteAuthorById(int id);
 
         IDataResult<List<Author>> GetAll();

@@ -38,6 +38,8 @@ namespace Business.DependancyResolver.Autofac
 
             builder.RegisterType<PublicationManager>().As<IPublicationService>();
             builder.RegisterType<EfPublicationDal>().As<IPublicationDal>();
+            builder.RegisterType<AuthorManager>().As<IAuthorService>();
+            builder.RegisterType<EfAuthorDal>().As<IAuthorDal>();
 
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
