@@ -5,11 +5,11 @@ namespace Business.Constants.Messages
 {
     public static class Messages
     {
-        public static string SucceedDelete = "Silme Başarılı";
+        public static string SucceedDelete = "Succeed Delete";
         public static string AnErrorOcured = "Bir Hata Oluştu";
         public static string UserNotFound = "Kullanıcı bulunamadı";
         public static string PasswordUpdated = "Parola Güncellendi";
-        public static string PasswordError = "Şifre hatalı";
+        public static string PasswordError = "Username or password wrong!";
         public static string SuccessfulLogin = "Sisteme giriş başarılı";
         public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
         public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";

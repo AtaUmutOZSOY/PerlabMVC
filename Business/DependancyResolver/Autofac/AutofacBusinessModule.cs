@@ -36,6 +36,8 @@ namespace Business.DependancyResolver.Autofac
             builder.RegisterType<ProjectManager>().As<IProjectService>();
             builder.RegisterType<EfProjectDal>().As<IProjectDal>();
 
+            builder.RegisterType<PublicationManager>().As<IPublicationService>();
+            builder.RegisterType<EfPublicationDal>().As<IPublicationDal>();
 
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 

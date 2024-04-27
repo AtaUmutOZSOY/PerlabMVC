@@ -18,6 +18,7 @@ namespace Models.Concrete
 
         public string ProjectManagerFullName { get; set; }
         public DateTime DeadLine { get; set; }
+        public DateTime StartDate { get; set; }
 
 
     }
