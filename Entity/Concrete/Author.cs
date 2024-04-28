@@ -24,6 +24,5 @@ namespace Models.Concrete
         public string LastName { get; set; }
         public string Affiliation { get; set; }
 
-        public List<Publication> Publications { get; set; }
     }
 }
