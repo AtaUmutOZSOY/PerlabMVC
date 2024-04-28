@@ -4,6 +4,8 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Models.Concrete;
+using Models.Dtos.Authors;
+using Models.Dtos.Publications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,22 +18,42 @@ namespace Business.Concrete
     {
         IPublicationDal _publicationDal;
         IAuthorService _authorService;
-        public PublicationManager(IPublicationDal publicationDal)
+        public PublicationManager(IPublicationDal publicationDal,IAuthorService authorService)
         {
             _publicationDal = publicationDal;
+            _authorService = authorService;
         }
 
-        public IResult CreateNewPublication(Publication publication)
+        public IResult CreateNewPublication(CreateNewPublicationRequestDto createNewPublicationRequestDto)
         {
-            var result = BusinessRules.Run(CheckExistPublicationByDoi(publication.Doi),CheckAuthors(publication.Authors));
+            var newPublication = new Publication()
+            {
+                Doi = createNewPublicationRequestDto.Doi,
+                Issn = createNewPublicationRequestDto.Issn,
+                JournalName = createNewPublicationRequestDto.JournalName,
+                PublishedYear = createNewPublicationRequestDto.PublishedYear,
+                Title = createNewPublicationRequestDto.Title,
+                
+            };
+
+            var result = BusinessRules.Run(CheckExistPublicationByDoi(createNewPublicationRequestDto));
             if (result.Success)
             {
-                _publicationDal.Add(publication);
+                _publicationDal.Add(newPublication);
                 return new SuccessResult(Messages.SucceedAdd);
             }
             return new ErrorResult(result.Message);
         }
 
+        private IResult CheckExistPublicationByDoi(CreateNewPublicationRequestDto createNewPublicationRequestDto)
+        {
+            var result = _publicationDal.Get(x=>x.Doi ==  createNewPublicationRequestDto.Doi);
+            if (result is not null)
+            {
+                return new ErrorResult("This publication already exist.");
+            }
+            return new SuccessResult();
+        }
         private IResult CheckAuthors(List<Author> authors)
         {
            int notFoundCount=0;
@@ -92,6 +114,17 @@ namespace Business.Concrete
         public IResult UpdatePublication()
         {
             throw new NotImplementedException();
+        }
+
+        public IResult AssignAuthorToExistPublication(AssignAuthorToExistPublicationRequestDto assignAuthorToExistPublicationRequestDto)
+        {
+            var result = _publicationDal.AssignAuthorToExistPublication(assignAuthorToExistPublicationRequestDto);
+
+            if (result.Success)
+            {
+                return new SuccessResult("Succeed!");
+            }
+            return new ErrorResult(result.Message);
         }
     }
 }

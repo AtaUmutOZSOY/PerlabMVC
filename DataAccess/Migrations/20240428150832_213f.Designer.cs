@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(PerlabDbContext))]
-    partial class PerlabDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240428150832_213f")]
+    partial class _213f
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +42,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OperationClaims", (string)null);
+                    b.ToTable("OperationClaims");
                 });
 
             modelBuilder.Entity("Core.Entity.Concretes.User", b =>
@@ -92,7 +95,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Core.Entity.Concretes.UserOperationClaim", b =>
@@ -114,7 +117,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserOperationClaims", (string)null);
+                    b.ToTable("UserOperationClaims");
                 });
 
             modelBuilder.Entity("Models.Concrete.Author", b =>
@@ -150,7 +153,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("PublicationId");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("Models.Concrete.CarouselImage", b =>
@@ -185,7 +188,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CarouselImages", (string)null);
+                    b.ToTable("CarouselImages");
                 });
 
             modelBuilder.Entity("Models.Concrete.Collaboration", b =>
@@ -213,7 +216,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Collaborations", (string)null);
+                    b.ToTable("Collaborations");
                 });
 
             modelBuilder.Entity("Models.Concrete.NewsFeed", b =>
@@ -254,7 +257,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NewsFeeds", (string)null);
+                    b.ToTable("NewsFeeds");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("NewsFeed");
 
@@ -314,7 +317,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("People", (string)null);
+                    b.ToTable("People");
                 });
 
             modelBuilder.Entity("Models.Concrete.Research", b =>
@@ -342,7 +345,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Researches", (string)null);
+                    b.ToTable("Researches");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Research");
 
