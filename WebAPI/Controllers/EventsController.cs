@@ -12,10 +12,12 @@ namespace WebAPI.Controllers
     public class EventsController : ControllerBase
     {
         INewsFeedService _newsFeedService;
+        IEventService _eventService;
 
-        public EventsController(INewsFeedService newsFeedService)
+        public EventsController(INewsFeedService newsFeedService,IEventService eventService)
         {
             _newsFeedService = newsFeedService;
+            _eventService = eventService;
         }
 
 
@@ -52,6 +54,18 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+
+        [HttpPut("updateEvent")]
+
+        public IActionResult UpdateEvent(UpdateEventRequestDto updateEventRequestDto)
+        {
+            var result = _eventService.UpdateEvent(updateEventRequestDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return NotFound(result);
         }
     }
 }

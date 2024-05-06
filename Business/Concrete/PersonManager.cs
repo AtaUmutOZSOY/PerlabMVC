@@ -26,11 +26,15 @@ namespace Business.Concrete
         {
             var existPerson = _personDal.Get(x=>x.Id == id);
             existPerson.PersonImageBase64String = personImageBase64String;
+            if (existPerson.PersonImageBase64String == personImageBase64String)
+            {
+                return new ErrorResult("Please upload another image");
+            }
             _personDal.Update(existPerson);
             return new SuccessResult(Messages.SucceedUpdate);
         }
 
-        public IResult CreatePerson(CreatePersonRequestDto createLaboratoryPersonRequestDto)
+        public IResult CreatePerson(CreateNewPersonRequestDto createLaboratoryPersonRequestDto)
         {
             var fullName = createLaboratoryPersonRequestDto.FirstName + " " + createLaboratoryPersonRequestDto?.MiddleName + " " + createLaboratoryPersonRequestDto.LastName;
             var result = CheckExistPerson(fullName);
@@ -104,13 +108,29 @@ namespace Business.Concrete
 
         public IResult UpdatePersonVisualRank(int id, int visualRank)
         {
-            var existPerson = _personDal.Get(x=>x.Id ==id);
+            var existPerson = _personDal.Get(x => x.Id == id);
             if (existPerson is null)
             {
                 return new ErrorResult("Person not found");
             }
-            existPerson.VisualRank = visualRank;
-            _personDal.Update(existPerson);
+
+            var allPeople = _personDal.GetAll();
+
+            foreach (var person in allPeople)
+            {
+                if (person.VisualRank == visualRank)
+                {
+                    person.VisualRank = existPerson.VisualRank;
+                    existPerson.VisualRank = visualRank;
+                    _personDal.Update(person);
+                    _personDal.Update(existPerson);
+                }
+                else
+                {
+                    existPerson.VisualRank = visualRank;
+                    _personDal.Update(existPerson);
+                }
+            }
             return new SuccessResult("Rank of" + existPerson.FullName+ "changed");
         }
 

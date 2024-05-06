@@ -17,9 +17,9 @@ namespace WebAPI.Controllers
             _personService = personService;
         }
 
-        [HttpPost("createPerson")]
+        [HttpPost("createNewPerson")]
 
-        public IActionResult CreatePerson(CreatePersonRequestDto createPersonRequestDto)
+        public IActionResult CreatePerson(CreateNewPersonRequestDto createPersonRequestDto)
         {
             var result = _personService.CreatePerson(createPersonRequestDto);
             if (result.Success)
@@ -58,6 +58,18 @@ namespace WebAPI.Controllers
         public IActionResult UpdatePersonVisualRank([FromQuery] int id, [FromQuery] int visualRank)
         {
             var result = _personService.UpdatePersonVisualRank(id, visualRank);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPut("updatePersonImage")]
+
+        public IActionResult UpdatePersonImage([FromQuery] int id, [FromQuery] string personImageBase64String)
+        {
+            var result = _personService.ChangePersonImage(id, personImageBase64String);
             if (result.Success)
             {
                 return Ok(result);

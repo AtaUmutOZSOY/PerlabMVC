@@ -11,7 +11,7 @@ namespace Business.Abstract
 {
     public interface IPersonService
     {
-        IResult CreatePerson(CreatePersonRequestDto createLaboratoryPersonRequestDto);
+        IResult CreatePerson(CreateNewPersonRequestDto createLaboratoryPersonRequestDto);
         IResult DeletePersonById(int id);
         IResult UpdatePersonVisualRank(int id,int visualRank);
         IDataResult<Person> GetById(int id);
@@ -19,5 +19,6 @@ namespace Business.Abstract
         IResult UpdatePerson(Person person);
 
         IResult ChangePersonImage(int id, string personImageBase64String);
+
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Models.Dtos.Person
 {
-    public class CreatePersonRequestDto:IDto
+    public class CreateNewPersonRequestDto:IDto
     {
         public string FirstName { get; set; }
         public string? MiddleName { get; set; }
@@ -19,7 +19,6 @@ namespace Models.Dtos.Person
         public string LinkedInUrl { get; set; }
         public string OrcidUrl { get; set; }
         public int VisualRank { get; set; }
-
         public string Base64String { get; set; }
     }
 }
